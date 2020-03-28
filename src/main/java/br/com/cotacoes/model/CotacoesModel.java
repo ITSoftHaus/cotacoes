@@ -20,12 +20,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "cotacoes")
 @NamedQueries({
-		@NamedQuery(name = "CotacoesModel.findAll", query = "Select c from CotacoesModel c Order by data_cotacao"),
+		@NamedQuery(name = "CotacoesModel.findAll", query = "Select c from CotacoesModel c Order by dataCotacao"),
 		@NamedQuery(name = "CotacoesModel.findByDataCotacao", 
-		            query = "Select c from CotacoesModel c WHERE c.data_cotacao = :dataCotacao Order by data_cotacao",
+		            query = "Select c from CotacoesModel c WHERE c.dataCotacao = :dataCotacao Order by dataCotacao",
 		            hints = @QueryHint(name = "org.hibernate.cacheable", value = "true")),
 		@NamedQuery(name = "CotacoesModel.findByDataRequisicao", 
-                    query = "Select c from CotacoesModel c WHERE c.data_requisicao = :dataRequisicao Order by data_requisicao",
+                    query = "Select c from CotacoesModel c WHERE c.dataRequisicao = :dataRequisicao Order by dataRequisicao",
                     hints = @QueryHint(name = "org.hibernate.cacheable", value = "true"))
 })
 @SequenceGenerator(name = "cotacoesidseq", sequenceName = "cotacoes_id_seq", allocationSize = 1, initialValue = 10)
