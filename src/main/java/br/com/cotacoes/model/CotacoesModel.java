@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +20,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "cotacoes")
 @NamedQueries({
-		@NamedQuery(name = "CotacoesModel.findAll", query = "Select c from CotacoesModel c Order by dataCotacao"),
+		@NamedQuery(name = "CotacoesModel.findAll", query = "Select c from CotacoesModel c Order by data_cotacao"),
 		@NamedQuery(name = "CotacoesModel.findByDataCotacao", 
-		            query = "Select c from CotacoesModel c WHERE c.dataCotacao = :dataCotacao Order by dataCotacao",
+		            query = "Select c from CotacoesModel c WHERE c.data_cotacao = :dataCotacao Order by data_cotacao",
 		            hints = @QueryHint(name = "org.hibernate.cacheable", value = "true")),
 		@NamedQuery(name = "CotacoesModel.findByDataRequisicao", 
-                    query = "Select c from CotacoesModel c WHERE c.dataRequisicao = :dataRequisicao Order by dataRequisicao",
+                    query = "Select c from CotacoesModel c WHERE c.data_requisicao = :dataRequisicao Order by data_requisicao",
                     hints = @QueryHint(name = "org.hibernate.cacheable", value = "true"))
 })
 @SequenceGenerator(name = "cotacoesidseq", sequenceName = "cotacoes_id_seq", allocationSize = 1, initialValue = 10)
@@ -36,16 +37,21 @@ public class CotacoesModel {
 	private Long id;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "data_requisicao")
 	private Date dataRequisicao;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "data_cotacao")
 	private Date dataCotacao;
 
+	@Column(name = "cotacao_compra")
 	private BigDecimal cotacaoCompra;
 
+	@Column(name = "cotacao_venda")
 	private BigDecimal cotacaoVenda;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_hora_cotacao")
 	private Date dataHoraCotacao;
 
 	public Long getId() {
