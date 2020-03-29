@@ -21,9 +21,12 @@ import javax.persistence.TemporalType;
 @Table(name = "cotacoes")
 @NamedQueries({
 		@NamedQuery(name = "CotacoesModel.findAll", query = "Select c from CotacoesModel c Order by dataCotacao"),
-		@NamedQuery(name = "CotacoesModel.findByDataCotacao", 
+		@NamedQuery(name = "CotacoesModel.findByCotacaoData", 
 		            query = "Select c from CotacoesModel c WHERE c.dataCotacao = :dataCotacao Order by dataCotacao",
 		            hints = @QueryHint(name = "org.hibernate.cacheable", value = "true")),
+		@NamedQuery(name = "CotacoesModel.findByCotacaoPeriodo", 
+			        query = "Select c from CotacoesModel c WHERE c.dataCotacao = :dataCotacaoInicio and c.dataCotacao = :dataCotacaoFim Order by dataCotacao",
+			        hints = @QueryHint(name = "org.hibernate.cacheable", value = "true")),
 		@NamedQuery(name = "CotacoesModel.findByDataRequisicao", 
                     query = "Select c from CotacoesModel c WHERE c.dataRequisicao = :dataRequisicao Order by dataRequisicao",
                     hints = @QueryHint(name = "org.hibernate.cacheable", value = "true"))
@@ -36,13 +39,11 @@ public class CotacoesModel {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cotacoesidseq")
 	private Long id;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name = "data_requisicao")
-	private Date dataRequisicao;
+	private String dataRequisicao;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name = "data_cotacao")
-	private Date dataCotacao;
+	private String dataCotacao;
 
 	@Column(name = "cotacao_compra")
 	private BigDecimal cotacaoCompra;
@@ -56,21 +57,21 @@ public class CotacoesModel {
 
 	public Long getId() {
 		return id;
-	}
+	}	
 
-	public Date getDataRequisicao() {
+	public String getDataRequisicao() {
 		return dataRequisicao;
 	}
 
-	public void setDataRequisicao(Date dataRequisicao) {
+	public void setDataRequisicao(String dataRequisicao) {
 		this.dataRequisicao = dataRequisicao;
 	}
 
-	public Date getDataCotacao() {
+	public String getDataCotacao() {
 		return dataCotacao;
 	}
 
-	public void setDataCotacao(Date dataCotacao) {
+	public void setDataCotacao(String dataCotacao) {
 		this.dataCotacao = dataCotacao;
 	}
 

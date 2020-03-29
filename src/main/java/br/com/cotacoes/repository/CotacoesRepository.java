@@ -1,6 +1,5 @@
 package br.com.cotacoes.repository;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -30,14 +29,20 @@ public class CotacoesRepository {
 		return cotacoes;
 	}
 	
-	public List<CotacoesModel> findByDataCotacao(Date dataCotacao) {
-		TypedQuery<CotacoesModel> query = em.createNamedQuery("CotacoesModel.findByDataCotacao", CotacoesModel.class);
+	public List<CotacoesModel> findByCotacaoData(String dataCotacao) {
+		TypedQuery<CotacoesModel> query = em.createNamedQuery("CotacoesModel.findByCotacaoData", CotacoesModel.class);
 		List<CotacoesModel> cotacoes = query.getResultList();
 		return cotacoes;
 	}
 	
-	public List<CotacoesModel> findByDataRequisicao(Date dataRequisicao) {
+	public List<CotacoesModel> findByDataRequisicao(String dataRequisicao) {
 		TypedQuery<CotacoesModel> query = em.createNamedQuery("CotacoesModel.findByDataRequisicao", CotacoesModel.class);
+		List<CotacoesModel> cotacoes = query.getResultList();
+		return cotacoes;
+	}
+	
+	public List<CotacoesModel> findByCotacaoPeriodo(String dataCotacaoInicio, String dataCotacaoFim) {
+		TypedQuery<CotacoesModel> query = em.createNamedQuery("CotacoesModel.findByCotacaoPeriodo", CotacoesModel.class);
 		List<CotacoesModel> cotacoes = query.getResultList();
 		return cotacoes;
 	}

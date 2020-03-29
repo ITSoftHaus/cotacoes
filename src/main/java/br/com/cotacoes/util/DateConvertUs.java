@@ -9,27 +9,24 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-public class DateParam {
-	
+public class DateConvertUs {
+
 	private final Date date;
 
-	public DateParam(String data) throws WebApplicationException {
+	public DateConvertUs(String data) throws WebApplicationException {
 		
 		if (data.isEmpty()) {
 			this.date = null;
 			return;
 		}
 		
-		System.out.println("DateParam String: " + data);
-		
 		final DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 		
 		try {
 			this.date = dateFormat.parse(data);
-			System.out.println("DateParam data: " + this.date.toString());
 		} catch (ParseException e) {
 			throw new WebApplicationException(Response.status(Status.BAD_REQUEST)
-					.entity("DateParam: Parse to Date não pode ser feito: " + e.getMessage()).build());
+					.entity("DateConvertUS: Parse to Date não pode ser feito: " + e.getMessage()).build());
 		}
 	}
 

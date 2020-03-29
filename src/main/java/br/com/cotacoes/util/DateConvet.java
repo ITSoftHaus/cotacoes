@@ -9,11 +9,11 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-public class DateParam {
+public class DateConvet {
 	
 	private final Date date;
 
-	public DateParam(String data) throws WebApplicationException {
+	public DateConvet(String data) throws WebApplicationException {
 		
 		if (data.isEmpty()) {
 			this.date = null;
@@ -22,7 +22,7 @@ public class DateParam {
 		
 		System.out.println("DateParam String: " + data);
 		
-		final DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+		final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
 			this.date = dateFormat.parse(data);
